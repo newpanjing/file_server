@@ -31,5 +31,5 @@ go build main.go
 ### Run with port
 
 ```bash
-./file_server --host=127.0.0.1:1234
+./fs --host=127.0.0.1:1234
 ```
