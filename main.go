@@ -6,12 +6,12 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 )
 
 func main() {
 	router := httprouter.New()
 	//获取当前目录
-	pwd, _ := os.Getwd()
 
 	var host string
 
@@ -19,8 +19,16 @@ func main() {
 	flag.StringVar(&host, "host", "127.0.0.1:1234", "监听地址")
 	flag.Parse()
 
+	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	//设置静态文件目录
-	router.ServeFiles("/*filepath", http.Dir(pwd))
+	router.ServeFiles("/*filepath", http.Dir(dir))
 	log.Printf("server start at http://%s", host)
-	_ = http.ListenAndServe(host, router)
+	err = http.ListenAndServe(host, router)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
