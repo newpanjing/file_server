@@ -22,7 +22,7 @@ jobs:
         run: GOOS=darwin GOARCH=amd64 go build -o ./dist/fs_macOS_AMD64
 
       - name: Build-Macos-Arm64
-        run: GOOS=darwin GOARCH=arm64 go build -o ./dist/fs_(macOS_Apple_Silicon)
+        run: GOOS=darwin GOARCH=arm64 go build -o ./dist/fs_macOS_Apple_Silicon
 
       - name: Build-Windows-x64
         run: GOOS=windows GOARCH=amd64 go build -o ./dist/fs_Windows_AMD64.exe
